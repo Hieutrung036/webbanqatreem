@@ -1,0 +1,72 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th1 08, 2025 lúc 07:46 AM
+-- Phiên bản máy phục vụ: 8.3.0
+-- Phiên bản PHP: 8.2.18
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `webbanqatreem1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietsanpham`
+--
+
+DROP TABLE IF EXISTS `chitietsanpham`;
+CREATE TABLE IF NOT EXISTS `chitietsanpham` (
+  `idctsp` int NOT NULL AUTO_INCREMENT,
+  `soluong` int NOT NULL,
+  `idsp` int DEFAULT NULL,
+  `idkt` int DEFAULT NULL,
+  `idm` int DEFAULT NULL,
+  PRIMARY KEY (`idctsp`),
+  KEY `idsp` (`idsp`),
+  KEY `idkt` (`idkt`),
+  KEY `idm` (`idm`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietsanpham`
+--
+
+INSERT INTO `chitietsanpham` (`idctsp`, `soluong`, `idsp`, `idkt`, `idm`) VALUES
+(47, 10, 31, 15, 23),
+(48, 1, 31, 15, 20),
+(49, 1, 31, 17, 23),
+(50, 1, 31, 18, 23),
+(53, 1, 32, 15, 23),
+(54, 1, 32, 15, 22),
+(55, 1, 32, 16, 23),
+(56, 1, 33, 15, 23);
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `chitietsanpham`
+--
+ALTER TABLE `chitietsanpham`
+  ADD CONSTRAINT `chitietsanpham_ibfk_1` FOREIGN KEY (`idkt`) REFERENCES `kichthuoc` (`idkt`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `chitietsanpham_ibfk_2` FOREIGN KEY (`idm`) REFERENCES `mau` (`idm`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `chitietsanpham_ibfk_3` FOREIGN KEY (`idsp`) REFERENCES `sanpham` (`idsp`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
