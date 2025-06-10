@@ -2,8 +2,10 @@ FROM php:8.2-apache
 
 # Cài extension
 RUN apt-get update && apt-get install -y \
-    zip unzip curl libpng-dev libonig-dev libxml2-dev libzip-dev git \
-    && docker-php-ext-install pdo pdo_mysql zip
+    zip unzip curl libpng-dev libonig-dev libxml2-dev libzip-dev libjpeg-dev libfreetype6-dev git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql zip gd
+
 
 # Bật mod_rewrite cho Laravel
 RUN a2enmod rewrite
